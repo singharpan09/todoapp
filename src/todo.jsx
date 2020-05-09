@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import DisplayList from "./displayList";
+import { v4 as uuid } from "uuid";
+import Form from "./form";
 
 class TODO extends Component {
   constructor(props) {
@@ -10,19 +12,19 @@ class TODO extends Component {
     };
   }
 
-  handleOnChange = (e) => {
-    this.setState({ item: e.target.value });
+  handleOnChange = (event) => {
+    this.setState({ item: event.target.value });
   };
 
-  submitTodo = (e, newTodo) => {
-    e.preventDefault();
+  handleAddTodo = (event, newTodo) => {
+    event.preventDefault();
     if (newTodo !== "") {
       const newitem = {
-        id: Date.now(),
+        id: uuid(),
         name: newTodo,
         checked: true,
       };
-
+      console.log(uuid());
       const newList = [...this.state.todoList];
       newList.push(newitem);
       this.setState({
@@ -35,40 +37,34 @@ class TODO extends Component {
   handleChecked = (clickchange) => {
     const check = [...this.state.todoList];
     const Index = check.indexOf(clickchange);
-    console.log(check[Index]);
+
+    check[Index] = { ...clickchange };
+    check[Index].checked = check[Index].checked === true ? false : true;
+
+    this.setState({
+      todoList: check,
+    });
   };
 
   render() {
+    const { item, todoList } = this.state;
+
     return (
       <React.Fragment>
         <h1>Todo App</h1>
 
-        {this.state.todoList.map((todo) => (
+        {todoList.map((todo) => (
           <DisplayList
             key={todo.id}
             todo={todo}
             onCheckboxChange={this.handleChecked}
           />
         ))}
-        <form onSubmit={this.handleSubmit}>
-          <input
-            className="form-control"
-            type="text"
-            placeholder="Enter todo..."
-            value={this.state.item}
-            onChange={this.handleOnChange}
-            required
-          />
-          <br />
-          <button
-            className="btn btn-light"
-            onClick={(e) => {
-              this.submitTodo(e, this.state.item);
-            }}
-          >
-            Submit
-          </button>
-        </form>
+        <Form
+          onInputChange={this.handleOnChange}
+          item={item}
+          submitTodo={this.handleAddTodo}
+        />
       </React.Fragment>
     );
   }
