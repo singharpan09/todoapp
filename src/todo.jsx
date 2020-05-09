@@ -19,8 +19,8 @@ class TODO extends Component {
     if (newTodo !== "") {
       const newitem = {
         id: Date.now(),
-        value: newTodo,
-        isDone: true,
+        name: newTodo,
+        checked: true,
       };
 
       const newList = [...this.state.todoList];
@@ -32,11 +32,9 @@ class TODO extends Component {
     }
   };
 
-  handleChecked = (id) => {
+  handleChecked = (clickchange) => {
     const check = [...this.state.todoList];
-    console.log(check);
-
-    const Index = check.indexOf(check.id);
+    const Index = check.indexOf(clickchange);
     console.log(Index);
   };
 
@@ -48,15 +46,13 @@ class TODO extends Component {
         {this.state.todoList.map((todo) => (
           <DisplayList
             key={todo.id}
-            name={todo.value}
-            checked={todo.isDone}
-            id={todo.id}
+            todo={todo}
             onCheckboxChange={this.handleChecked}
           />
         ))}
         <form onSubmit={this.handleSubmit}>
           <input
-            class="form-control"
+            className="form-control"
             type="text"
             placeholder="Enter todo..."
             value={this.state.item}
@@ -64,7 +60,7 @@ class TODO extends Component {
             required
           />
           <button
-            class="btn btn-light"
+            className="btn btn-light"
             onClick={(e) => {
               this.submitTodo(e, this.state.item);
             }}
