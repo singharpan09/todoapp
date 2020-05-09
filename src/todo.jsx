@@ -56,7 +56,9 @@ class TODO extends Component {
         ))}
         <form onSubmit={this.handleSubmit}>
           <input
+            class="form-control"
             type="text"
+            placeholder="Enter todo..."
             value={this.state.item}
             onChange={this.handleOnChange}
             required
