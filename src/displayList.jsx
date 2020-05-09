@@ -3,17 +3,23 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 const DisplayList = (props) => {
   return (
-    <ul key={props.todo.id} class="list-group">
-      <li class="list-group-item ">
-        <input type="checkbox" checked={props.todo.checked} />
-        <label>{props.todo.name}</label>
-        <div class="float-right">
-          {props.todo.checked && (
-            <span class="badge badge-secondary">Completed</span>
+    <React.Fragment>
+      <ul className="list-group">
+        <li className="list-group-item">
+          <input
+            type="checkbox"
+            checked={props.checked}
+            onChange={() => props.onCheckboxChange(props.id)}
+          />
+          {props.name}
+          {props.checked && (
+            <div className="float-right">
+              <span className="badge badge-secondary">Completed</span>
+            </div>
           )}
-        </div>
-      </li>
-    </ul>
+        </li>
+      </ul>
+    </React.Fragment>
   );
 };
 
