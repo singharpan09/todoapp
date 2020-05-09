@@ -1,27 +1,12 @@
 import React, { Component } from "react";
 import DisplayList from "./displayList";
+import todoList from "./todoList.json";
 
 class TODO extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      todoList: [
-        {
-          id: 0,
-          name: "Vikas",
-          checked: true,
-        },
-        {
-          id: 1,
-          name: "Nitesh",
-          checked: false,
-        },
-        {
-          id: 2,
-          name: "Amit",
-          checked: true,
-        },
-      ],
+      todoList,
     };
   }
   render() {
