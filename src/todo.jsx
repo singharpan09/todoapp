@@ -59,6 +59,7 @@ class TODO extends Component {
             onChange={this.handleOnChange}
             required
           />
+          <br />
           <button
             className="btn btn-light"
             onClick={(e) => {

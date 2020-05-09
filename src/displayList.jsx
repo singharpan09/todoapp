@@ -2,7 +2,7 @@ import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const DisplayList = (props) => {
-  const { checked, name, id } = props;
+  const { checked, name } = props.todo;
   return (
     <React.Fragment>
       <ul className="list-group">
@@ -10,7 +10,7 @@ const DisplayList = (props) => {
           <input
             type="checkbox"
             checked={checked}
-            onChange={() => props.onCheckboxChange(props)}
+            onChange={() => props.onCheckboxChange(props.todo)}
           />
           {name}
           {checked && (
