@@ -64,6 +64,7 @@ class TODO extends Component {
             required
           />
           <button
+            class="btn btn-light"
             onClick={(e) => {
               this.submitTodo(e, this.state.item);
             }}
