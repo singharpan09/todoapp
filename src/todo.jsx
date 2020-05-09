@@ -35,7 +35,7 @@ class TODO extends Component {
   handleChecked = (clickchange) => {
     const check = [...this.state.todoList];
     const Index = check.indexOf(clickchange);
-    console.log(Index);
+    console.log(check[Index]);
   };
 
   render() {
