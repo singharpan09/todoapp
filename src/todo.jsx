@@ -24,7 +24,7 @@ class TODO extends Component {
         name: newTodo,
         checked: true,
       };
-      console.log(uuid());
+
       const newList = [...this.state.todoList];
       newList.push(newitem);
       this.setState({
@@ -46,6 +46,10 @@ class TODO extends Component {
     });
   };
 
+  handleEdit = (value) => {
+    //Todo
+  };
+
   render() {
     const { item, todoList } = this.state;
 
@@ -58,6 +62,7 @@ class TODO extends Component {
             key={todo.id}
             todo={todo}
             onCheckboxChange={this.handleChecked}
+            handleEdit={this.handleEdit}
           />
         ))}
         <Form

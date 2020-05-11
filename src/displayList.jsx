@@ -1,8 +1,9 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-
+import Edittodo from "./edittodo";
 const DisplayList = (props) => {
-  const { checked, name } = props.todo;
+  const { checked, name, id } = props.todo;
+
   return (
     <React.Fragment>
       <ul className="list-group">
@@ -13,6 +14,13 @@ const DisplayList = (props) => {
             onChange={() => props.onCheckboxChange(props.todo)}
           />
           {name}
+          <Edittodo
+            value={name}
+            id={id}
+            handleEdit={(value) => {
+              props.handleEdit(value);
+            }}
+          />
           {checked && (
             <div className="float-right">
               <span className="badge badge-secondary">Completed</span>
