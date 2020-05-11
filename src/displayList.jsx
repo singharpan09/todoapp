@@ -15,12 +15,27 @@ const DisplayList = (props) => {
           />
           {name}
           <Edittodo
-            value={name}
             id={id}
+            name={name}
+            checked={checked}
             handleEdit={(value) => {
               props.handleEdit(value);
             }}
+            handleEditChange={(e) => {
+              props.handleEditChange(e);
+            }}
           />
+
+          <button
+            style={{ margin: "10px" }}
+            className="btn btn-danger"
+            onClick={() => {
+              props.deleteItem(id);
+            }}
+          >
+            Delete
+          </button>
+
           {checked && (
             <div className="float-right">
               <span className="badge badge-secondary">Completed</span>

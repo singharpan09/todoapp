@@ -1,10 +1,15 @@
 import React from "react";
 
 const Edittodo = (props) => {
-  console.log(props);
   return (
     <React.Fragment>
-      <input type="text" value={props.value} />
+      <input
+        onChange={(e) => {
+          props.handleEditChange(e);
+        }}
+        type="text"
+        value={props.name}
+      />
       <button
         onClick={() => {
           props.handleEdit(props);
