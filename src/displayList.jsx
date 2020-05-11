@@ -14,7 +14,7 @@ const DisplayList = (props) => {
             onChange={() => props.onCheckboxChange(props.todo)}
           />
           {name}
-          <Edittodo
+          {/* <Edittodo
             id={id}
             name={name}
             checked={checked}
@@ -24,10 +24,10 @@ const DisplayList = (props) => {
             handleEditChange={(e) => {
               props.handleEditChange(e);
             }}
-          />
+          /> */}
 
           <button
-            style={{ margin: "10px" }}
+            style={{ "margin-left": "85%" }}
             className="btn btn-danger"
             onClick={() => {
               props.deleteItem(id);
