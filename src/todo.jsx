@@ -24,7 +24,7 @@ class TODO extends Component {
         name: newTodo,
         checked: true,
       };
-      console.log(uuid());
+
       const newList = [...this.state.todoList];
       newList.push(newitem);
       this.setState({
@@ -35,6 +35,7 @@ class TODO extends Component {
   };
 
   handleChecked = (clickchange) => {
+    console.log(clickchange);
     const check = [...this.state.todoList];
     const Index = check.indexOf(clickchange);
 
@@ -44,6 +45,33 @@ class TODO extends Component {
     this.setState({
       todoList: check,
     });
+  };
+
+  handleDelete = (id) => {
+    const newList = [...this.state.todoList];
+
+    const updateList = newList.filter((item) => item.id !== id);
+    this.setState({
+      todoList: updateList,
+    });
+  };
+
+  handleEdit = (value) => {
+    const Edit = [...this.state.todoList];
+
+    const Index = Edit.indexOf(value);
+
+    Edit[Index] = { ...value };
+    Edit[Index].name = value.name;
+
+    //   const i = Edit.filter((i) => {
+    //     Edit.indexOf(value.id);
+    //   });
+    //   console.log(i);
+    this.setState({ todoList: Edit });
+  };
+  handleEditChange = (e) => {
+    console.log(e.target.value);
   };
 
   render() {
@@ -58,6 +86,9 @@ class TODO extends Component {
             key={todo.id}
             todo={todo}
             onCheckboxChange={this.handleChecked}
+            handleEdit={this.handleEdit}
+            handleEditChange={this.handleEditChange}
+            deleteItem={this.handleDelete}
           />
         ))}
         <Form

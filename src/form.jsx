@@ -16,6 +16,7 @@ const Form = (props) => {
         />
         <br />
         <button
+          disabled={!item.length}
           className="btn btn-light"
           onClick={(e) => {
             props.submitTodo(e, item);
